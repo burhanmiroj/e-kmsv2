@@ -16,76 +16,155 @@
     margin-bottom: 1 rem;">
         <tbody>
             <tr>
-                <th scope="col" width="180px">Kunjungan Ke</th>
+                <th scope="col">Kunjungan Ke</th>
                 @foreach ($data as $cetakkms)
                     <th scope="col">{{ $loop->iteration }}</th>
                 @endforeach
             </tr>
-
-
             <tr>
-                <th scope="row"> Tanggal</th>
+                <th scope="col"> Tanggal</th>
                 @foreach ($data as $cetakkms)
                     <th> {{ $cetakkms->tanggal_pemeriksaan }}</th>
                 @endforeach
             </tr>
+            {{-- 
+                START : INSTRUMENTAL 
+            --}}
             <tr>
-                <th scope="row">Kegiatan Sehari-hari</th>
+                <th scope="row" class="bg-secondary text-white">Instrumental aktifitas kehidupan sehari hari lawton</th>
             </tr>
             <tr>
-                <th scope="row">Kategori A</th>
+                <th scope="row">Dikerjakan oleh orang lain (0)</th>
                 @foreach ($data as $cetakkms)
-                    @if ($cetakkms->kegiatan_harian == 'Kategori A')
-                        <th scope="col" style="background-color: #ffd700;">v</th>
-                    @else
-                        <th scope="col" style="background-color: #ffd700;"></th>
-                    @endif
+                    <th scope="col" style="background-color: #ffd700;">
+                        @if (intval($totalScoreLawton->total_lawton) == 0)
+                            <span>✓</span>
+                        @endif
+                    </th>
                 @endforeach
             </tr>
             <tr>
-                <th scope="row">Kategori B</th>
+                <th scope="row">Perlu bantuan sepanjang waktu (1)</th>
                 @foreach ($data as $cetakkms)
-                    @if ($cetakkms->kegiatan_harian == 'Kategori B')
-                        <th scope="col" style="background-color: #ff0;">v</th>
-                    @else
-                        <th scope="col" style="background-color: #ff0;"></th>
-                    @endif
+                    <th scope="col" style="background-color: #f8d824;">
+                        @if (intval($totalScoreLawton->total_lawton) == 1)
+                        <span>✓</span>
+                    @endif</th>
                 @endforeach
             </tr>
             <tr>
-                <th scope="row">Kategori C</th>
+                <th scope="row">Perlu bantuan sesekali (2)</th>
                 @foreach ($data as $cetakkms)
-                    @if ($cetakkms->kegiatan_harian == 'Kategori C')
-                        <th scope="col" style="background-color: #ffffe0;">v</th>
-                    @else
-                        <th scope="col" style="background-color: #ffffe0;"></th>
-                    @endif
+                    <th scope="col" style="background-color: #f4e171;">
+                        @if (intval($totalScoreLawton->total_lawton) == 2)
+                            <span>✓</span>
+                        @endif
+                    </th>
                 @endforeach
             </tr>
             <tr>
+                <th scope="row">Independen/mandiri (3-8)</th>
+                @foreach ($data as $cetakkms)
+                    <th scope="col" style="background-color: #f6edb9;">
+                        @if (intval($totalScoreLawton->total_lawton) > 2)
+                            <span>✓</span>
+                        @endif
+                    </th>
+                @endforeach
+            </tr>
+            {{-- 
+                START : BARTHEL 
+            --}}
             <tr>
-                <th scope="row">Status Mental</th>
+                <th scope="row" class="bg-secondary text-white"><br>Skor barthel index (Nilai AKS/ADL)</th>
             </tr>
             <tr>
-                <th scope="row">Ada</th>
+                <th scope="row">Mandiri (20)</th>
                 @foreach ($data as $cetakkms)
-                    @if ($cetakkms->status_mental == 'Ada')
-                        <th scope="col" style="background-color: #ffff80;">v</th>
-                    @else
-                        <th scope="col" style="background-color: #ffff80;"></th>
-                    @endif
+                    <th scope="col" style="background-color: #ffd700;">
+                        @if (intval($totalScoreBarthel->total_barthel) == 20)
+                            <span>✓</span>
+                        @endif
+                    </th>
                 @endforeach
             </tr>
             <tr>
-                <th scope="row">Tidak Ada</th>
+                <th scope="row">Ketergantungan ringan (12-19)</th>
                 @foreach ($data as $cetakkms)
-                    @if ($cetakkms->status_mental == 'Tidak Ada')
-                        <th scope="col" style="background-color: #ffffe0;">v</th>
-                    @else
-                        <th scope="col" style="background-color: #ffffe0;"></th>
-                    @endif
+                    <th scope="col" style="background-color: #f8d824;">
+                        @if ((intval($totalScoreBarthel->total_barthel) > 11) && (intval($totalScoreBarthel->total_barthel) < 20))
+                            <span>✓</span>
+                        @endif
+                    </th>
                 @endforeach
             </tr>
+            <tr>
+                <th scope="row">Ketergantungan sedang (9-11)</th>
+                @foreach ($data as $cetakkms)
+                    <th scope="col" style="background-color: #f4e171;">
+                        @if ((intval($totalScoreBarthel->total_barthel) > 8) && (intval($totalScoreBarthel->total_barthel) < 12))
+                            <span>✓</span>
+                        @endif
+                    </th>
+                @endforeach
+            </tr>
+            <tr>
+                <th scope="row">Ketergantungan berat (5-8)</th>
+                @foreach ($data as $cetakkms)
+                    <th scope="col" style="background-color: #f6edb9;">
+                        @if ((intval($totalScoreBarthel->total_barthel) > 4) && (intval($totalScoreBarthel->total_barthel) < 9))
+                            <span>✓</span>
+                        @endif
+                    </th>
+                @endforeach
+            </tr>
+            <tr>
+                <th scope="row">Ketergantungan total (0-4)</th>
+                @foreach ($data as $cetakkms)
+                    <th scope="col" style="background-color: #f6edb9;">
+                        @if ((intval($totalScoreBarthel->total_barthel) < 1) && (intval($totalScoreBarthel->total_barthel) < 5))
+                            <span>✓</span>
+                        @endif
+                    </th>
+                @endforeach
+            </tr>
+            {{-- 
+                START : NUTRISI GIZI 
+            --}}
+            <tr>
+                <th scope="row" class="bg-secondary text-white">Nutrisi Gizi</th>
+            </tr>
+            <tr>
+                <th scope="row">Normal (>23.5)</th>
+                @foreach ($data as $cetakkms)
+                    <th scope="col" style="background-color: #ffd700;">
+                        @if (intval($totalScoreNutrisiGizi->total_nutrisi_gizi) > 23.5)
+                            <span>✓</span>
+                        @endif
+                    </th>
+                @endforeach
+            </tr>
+            <tr>
+                <th scope="row">Beresiko malnutrisi (17-23.5)</th>
+                @foreach ($data as $cetakkms)
+                    <th scope="col" style="background-color: #f8d824;">
+                        @if ((intval($totalScoreNutrisiGizi->total_nutrisi_gizi) > 16) && (intval($totalScoreNutrisiGizi->total_nutrisi_gizi) < 24))
+                            <span>✓</span>
+                        @endif
+                    </th>
+                @endforeach
+            </tr>
+            <tr>
+                <th scope="row">Malnutrisi (<17)</th>
+                @foreach ($data as $cetakkms)
+                    <th scope="col" style="background-color: #f4e171;">
+                        @if (intval($totalScoreNutrisiGizi->total_nutrisi_gizi) < 18)
+                            <span>✓</span>
+                        @endif
+                    </th>
+                @endforeach
+            </tr>
+            {{-- IMT --}}
             <tr>
                 <th scope="row">Indeks Massa Tubuh</th>
             </tr>

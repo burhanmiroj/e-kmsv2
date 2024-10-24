@@ -62,7 +62,7 @@
                 <center>
                     <h4> Laporan Data KMS Lansia</h4>
                 </center>
-                <a href="/admin/data-lansia/cetaklaporandatakms/2"
+                <a href="/admin/data-lansia/cetaklaporandatakms/{{ session('data')[0]['nama_lansia1'] }}"
                     class="btn btn-sm btn-white m-b-10 float-right mr-4"><i
                         class="fa fa-file-pdf t-plus-1 text-danger fa-fw fa-lg"></i> Export
                     as PDF</a>
@@ -154,12 +154,13 @@
         </div>
     </div>
     @if (session('data'))
+        {{-- {{ dd() }} --}}
         <div class="panel panel-inverse">
             <div class="panel-body">
                 <center>
                     <h4> Riwayat KMS Lansia</h4>
                 </center>
-                <a href="/admin/data-lansia/cetaklaporandatakms/2"
+                <a href="/admin/data-lansia/cetaklaporandatakms/{{ session('data')[0]['nama_lansia1'] }}"
                     class="btn btn-sm btn-white m-b-10 float-right mr-4"><i
                         class="fa fa-file-pdf t-plus-1 text-danger fa-fw fa-lg"></i> Export
                     as PDF</a>
@@ -172,8 +173,6 @@
                                 <th>No. KMS</th>
                                 <th>Nama</th>
                                 <th>Tanggal Pemeriksaan</th>
-                                <th>Kemandirian</th>
-                                <th>Emosional Mental</th>
                                 <th>IMT</th>
                                 <th>Tekanan Darah</th>
                                 <th>Hemoglobin</th>
@@ -182,7 +181,6 @@
                                 <th>Keluhan</th>
                                 <th>Penanganan</th>
                                 <th>Penanggung jawab</th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -192,8 +190,6 @@
                                     <td> {{ $cetakkms->lansia->no_kms }}</td>
                                     <td> {{ $cetakkms->lansia->nama_lansia }}</td>
                                     <td> {{ $cetakkms->tanggal_pemeriksaan }}</td>
-                                    <td> {{ $cetakkms->kegiatan_harian }}</td>
-                                    <td> {{ $cetakkms->status_mental }}</td>
                                     <td> {{ $cetakkms->indeks_massa_tubuh }}</td>
                                     <td> {{ $cetakkms->tekanan_darah }}</td>
                                     <td> {{ $cetakkms->hemoglobin }}</td>
@@ -211,11 +207,11 @@
         </div>
         <div class="panel panel-inverse">
             <div class="panel-body">
-                <h4> KMS Lansia </h4>
-                <a href="/admin/data-lansia/cetakkms/2"
-                    class="btn btn-sm btn-white m-b-10 float-right mr-4"><i
-                        class="fa fa-file-pdf t-plus-1 text-danger fa-fw fa-lg"></i> Export
-                    as PDF</a>
+                <h4>KMS Lansia</h4>
+                <a href="/admin/data-lansia/cetakkms/{{ session('data')[0]['nama_lansia1'] }}" class="btn btn-sm btn-white m-b-10 float-right mr-4">
+                    <i class="fa fa-file-pdf t-plus-1 text-danger fa-fw fa-lg"></i> 
+                    <span>Export as PDF</span>
+                </a>
                 <table class="table table-bordered my-2" align="center" rules="all">
                     <thead>
                         <tr>
@@ -232,65 +228,149 @@
                                 <th> {{ $cetakkms->tanggal_pemeriksaan }}</th>
                             @endforeach
                         </tr>
+                        {{-- 
+                            START : INSTRUMENTAL 
+                        --}}
                         <tr>
-                            <th scope="row"><br>Kegiatan Sehari-hari</th>
+                            <th scope="row" class="bg-secondary text-white">Instrumental aktifitas kehidupan sehari hari lawton</th>
                         </tr>
                         <tr>
-                            <th scope="row">Kategori A</th>
+                            <th scope="row">Dikerjakan oleh orang lain (0)</th>
                             @foreach (session('data') as $cetakkms)
-                                @if ($cetakkms->kegiatan_harian == 'Kategori A')
-                                    <th scope="col" style="background-color: #ffd700;">✓</th>
-                                @else
-                                    <th scope="col" style="background-color: #ffd700;"></th>
-                                @endif
+                                <th scope="col" style="background-color: #ffd700;">
+                                    @if (intval($totalScoreLawton->total_lawton) == 0)
+                                        <span>✓</span>
+                                    @endif
+                                </th>
                             @endforeach
                         </tr>
                         <tr>
-                            <th scope="row">Kategori B</th>
+                            <th scope="row">Perlu bantuan sepanjang waktu (1)</th>
                             @foreach (session('data') as $cetakkms)
-                                @if ($cetakkms->kegiatan_harian == 'Kategori B')
-                                    <th scope="col" style="background-color: #ff0;">✓</th>
-                                @else
-                                    <th scope="col" style="background-color: #ff0;"></th>
-                                @endif
+                                <th scope="col" style="background-color: #f8d824;">
+                                    @if (intval($totalScoreLawton->total_lawton) == 1)
+                                    <span>✓</span>
+                                @endif</th>
                             @endforeach
                         </tr>
                         <tr>
-                            <th scope="row">Kategori C</th>
+                            <th scope="row">Perlu bantuan sesekali (2)</th>
                             @foreach (session('data') as $cetakkms)
-                                @if ($cetakkms->kegiatan_harian == 'Kategori C')
-                                    <th scope="col" style="background-color: #ffffe0;">✓</th>
-                                @else
-                                    <th scope="col" style="background-color: #ffffe0;"></th>
-                                @endif
+                                <th scope="col" style="background-color: #f4e171;">
+                                    @if (intval($totalScoreLawton->total_lawton) == 2)
+                                        <span>✓</span>
+                                    @endif
+                                </th>
                             @endforeach
                         </tr>
                         <tr>
+                            <th scope="row">Independen/mandiri (3-8)</th>
+                            @foreach (session('data') as $cetakkms)
+                                <th scope="col" style="background-color: #f6edb9;">
+                                    @if (intval($totalScoreLawton->total_lawton) > 2)
+                                        <span>✓</span>
+                                    @endif
+                                </th>
+                            @endforeach
+                        </tr>
+
+                        {{-- 
+                            START : BARTHEL 
+                        --}}
                         <tr>
-                            <th scope="row"><br>Status Mental</th>
+                            <th scope="row" class="bg-secondary text-white"><br>Skor barthel index (Nilai AKS/ADL)</th>
                         </tr>
                         <tr>
-                            <th scope="row">Ada</th>
+                            <th scope="row">Mandiri (20)</th>
                             @foreach (session('data') as $cetakkms)
-                                @if ($cetakkms->status_mental == 'Ada')
-                                    <th scope="col" style="background-color: #ffff80;">✓</th>
-                                @else
-                                    <th scope="col" style="background-color: #ffff80;"></th>
-                                @endif
+                                <th scope="col" style="background-color: #ffd700;">
+                                    @if (intval($totalScoreBarthel->total_barthel) == 20)
+                                        <span>✓</span>
+                                    @endif
+                                </th>
                             @endforeach
                         </tr>
                         <tr>
-                            <th scope="row">Tidak Ada</th>
+                            <th scope="row">Ketergantungan ringan (12-19)</th>
                             @foreach (session('data') as $cetakkms)
-                                @if ($cetakkms->status_mental == 'Tidak Ada')
-                                    <th scope="col" style="background-color: #ffffe0;">✓</th>
-                                @else
-                                    <th scope="col" style="background-color: #ffffe0;"></th>
-                                @endif
+                                <th scope="col" style="background-color: #f8d824;">
+                                    @if ((intval($totalScoreBarthel->total_barthel) > 11) && (intval($totalScoreBarthel->total_barthel) < 20))
+                                        <span>✓</span>
+                                    @endif
+                                </th>
                             @endforeach
                         </tr>
                         <tr>
-                            <th scope="row"><br>Indeks Massa Tubuh</th>
+                            <th scope="row">Ketergantungan sedang (9-11)</th>
+                            @foreach (session('data') as $cetakkms)
+                                <th scope="col" style="background-color: #f4e171;">
+                                    @if ((intval($totalScoreBarthel->total_barthel) > 8) && (intval($totalScoreBarthel->total_barthel) < 12))
+                                        <span>✓</span>
+                                    @endif
+                                </th>
+                            @endforeach
+                        </tr>
+                        <tr>
+                            <th scope="row">Ketergantungan berat (5-8)</th>
+                            @foreach (session('data') as $cetakkms)
+                                <th scope="col" style="background-color: #f6edb9;">
+                                    @if ((intval($totalScoreBarthel->total_barthel) > 4) && (intval($totalScoreBarthel->total_barthel) < 9))
+                                        <span>✓</span>
+                                    @endif
+                                </th>
+                            @endforeach
+                        </tr>
+                        <tr>
+                            <th scope="row">Ketergantungan total (0-4)</th>
+                            @foreach (session('data') as $cetakkms)
+                                <th scope="col" style="background-color: #f6edb9;">
+                                    @if ((intval($totalScoreBarthel->total_barthel) < 1) && (intval($totalScoreBarthel->total_barthel) < 5))
+                                        <span>✓</span>
+                                    @endif
+                                </th>
+                            @endforeach
+                        </tr>
+
+                        {{-- 
+                            START : NUTRISI GIZI 
+                        --}}
+                        <tr>
+                            <th scope="row" class="bg-secondary text-white">Nutrisi Gizi</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Normal (>23.5)</th>
+                            @foreach (session('data') as $cetakkms)
+                                <th scope="col" style="background-color: #ffd700;">
+                                    @if (intval($totalScoreNutrisiGizi->total_nutrisi_gizi) > 23.5)
+                                        <span>✓</span>
+                                    @endif
+                                </th>
+                            @endforeach
+                        </tr>
+                        <tr>
+                            <th scope="row">Beresiko malnutrisi (17-23.5)</th>
+                            @foreach (session('data') as $cetakkms)
+                                <th scope="col" style="background-color: #f8d824;">
+                                    @if ((intval($totalScoreNutrisiGizi->total_nutrisi_gizi) > 16) && (intval($totalScoreNutrisiGizi->total_nutrisi_gizi) < 24))
+                                        <span>✓</span>
+                                    @endif
+                                </th>
+                            @endforeach
+                        </tr>
+                        <tr>
+                            <th scope="row">Malnutrisi (<17)</th>
+                            @foreach (session('data') as $cetakkms)
+                                <th scope="col" style="background-color: #f4e171;">
+                                    @if (intval($totalScoreNutrisiGizi->total_nutrisi_gizi) < 18)
+                                        <span>✓</span>
+                                    @endif
+                                </th>
+                            @endforeach
+                        </tr>
+                        
+                        
+                        <tr>
+                            <th scope="row" class="bg-secondary text-white">Indeks Massa Tubuh</th>
                         </tr>
                         <tr>
                             <th scope="row">Lebih</th>
@@ -336,7 +416,7 @@
 
                         </tr>
                         <tr>
-                            <th scope="row"><br>Tekanan Darah</th>
+                            <th scope="row" class="bg-secondary text-white">Tekanan Darah</th>
                         </tr>
                         <tr>
                             <th scope="row">Tinggi</th>
@@ -368,6 +448,7 @@
                                 @endif
                             @endforeach
                         </tr>
+
                         <tr>
                             <th scope="row">Sistole</th>
                             @foreach (session('data') as $cetakkms)
@@ -393,13 +474,12 @@
                             @endforeach
                         </tr>
                         <tr>
-                            <th scope="row"><br>Hemoglobin</th>
-
+                            <th scope="row" class="bg-secondary text-white"><br>Hemoglobin</th>
                         </tr>
                         <tr>
                             <th scope="row">Kurang</th>
                             @foreach (session('data') as $cetakkms)
-                                @if ($cetakkms->hemoglobin == 'Kurang')
+                                @if ($cetakkms->hemoglobin == 'Positif')
                                     <th scope="col" style="background-color: #87CEFA;">✓</th>
                                 @else
                                     <th scope="col" style="background-color: #87CEFA;"></th>
@@ -424,7 +504,7 @@
 
                         </tr>
                         <tr>
-                            <th scope="row"><br>Reduksi Urine</th>
+                            <th scope="row" class="bg-secondary text-white"><br>Reduksi Urine</th>
                         </tr>
                         <tr>
                             <th scope="row">Positif</th>
@@ -460,7 +540,7 @@
                             @endforeach
                         </tr>
                         <tr>
-                            <th scope="row"><br>Protein Urine</th>
+                            <th scope="row" class="bg-secondary text-white">Protein Urine</th>
                         </tr>
                         <tr>
                             <th scope="row">Positif</th>

@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Admin\Lansia;
 
-use App\DataTables\Admin\Lansia\PantauanKMSDataTable;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\PantauanKMS;
 use App\Models\Kader;
 use App\Models\DataLansia;
-use App\Models\RujukanLansia;
+use App\Models\PantauanKMS;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Models\RujukanLansia;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\DataTables\Admin\Lansia\PantauanKMSDataTable;
 
 
 class PantauanKMSController extends Controller
@@ -54,8 +55,8 @@ class PantauanKMSController extends Controller
             return back()->withInput()->withToastError($th->validator->messages()->all()[0]);
         }
         
-        function getScoreValue($barthel) {
-            switch ($barthel) {
+        function getScoreValue($score) {
+            switch ($score) {
                 case 2:
                     return 1;
                 case 3:
@@ -153,14 +154,14 @@ class PantauanKMSController extends Controller
                 'nine_nutrisigizi' => $request->nine_nutrisigizi,
                 'ten_nutrisigizi' => $request->ten_nutrisigizi,
                 // SKOR LAWTON
-                'score_one_lawton' => $request->one_lawton < 4 ? 1 : 0,
-                'score_two_lawton' => $request->two_lawton < 3 ? 1 : 0,
-                'score_three_lawton' => $request->three_lawton < 2 ? 1 : 0,
-                'score_four_lawton' => $request->four_lawton < 2 ? 1 : 0,
-                'score_five_lawton' => $request->five_lawton < 4 ? 1 : 0,
-                'score_six_lawton' => $request->six_lawton < 3 ? 1 : 0,
-                'score_seven_lawton' => $request->seven_lawton < 2 ? 1 : 0,
-                'score_eight_lawton' => $request->eight_lawton < 3 ? 1 : 0,
+                'score_one_lawton' => $request->one_lawton,
+                'score_two_lawton' => $request->two_lawton,
+                'score_three_lawton' => $request->three_lawton,
+                'score_four_lawton' => $request->four_lawton,
+                'score_five_lawton' => $request->five_lawton,
+                'score_six_lawton' => $request->six_lawton,
+                'score_seven_lawton' => $request->seven_lawton,
+                'score_eight_lawton' => $request->eight_lawton,
                 // SKOR BARTHEL
                 'score_one_barthel' => $one_barthel_value,
                 'score_two_barthel' => $two_barthel_value,
@@ -173,20 +174,20 @@ class PantauanKMSController extends Controller
                 'score_nine_barthel' => $nine_barthel_value,
                 'score_ten_barthel' => $request->ten_barthel > 0 ? 1 : 0,
                 // SKOR NUTRISIGIZI
-                'score_one_nutrisigizi' => $request->one_nutrisigizi > 0 ? 1 : 0,
-                'score_two_nutrisigizi' => $request->two_nutrisigizi < 1 ? 1 : 0,
-                'score_three_nutrisigizi' => $request->three_nutrisigizi < 1 ? 1 : 0,
+                'score_one_nutrisigizi' => $request->one_nutrisigizi,
+                'score_two_nutrisigizi' => $request->two_nutrisigizi,
+                'score_three_nutrisigizi' => $request->three_nutrisigizi,
                 'score_four_nutrisigizi' => $four_nutrisigizivalue,
-                'score_five_one_nutrisigizi' => $request->five_one_nutrisigizi < 1 ? 1 : 0,
-                'score_five_two_nutrisigizi' => $request->five_two_nutrisigizi < 1 ? 1 : 0,
-                'score_five_three_nutrisigizi' => $request->five_three_nutrisigizi < 1 ? 1 : 0,
-                'score_six_nutrisigizi' => $request->six_nutrisigizi < 1 ? 1 : 0,
-                'score_seven_nutrisigizi' => $request->seven_nutrisigizi < 1 ? 1 : 0,
-                'score_eight_nutrisigizi' => $request->eight_nutrisigizi < 1 ? 1 : 0,
-                'score_nine_nutrisigizi' => $request->nine_nutrisigizi < 1 ? 1 : 0,
-                'score_ten_nutrisigizi' => $request->ten_nutrisigizi < 1 ? 1 : 0,
-                'score_eleven_nutrisigizi' => $request->eleven_nutrisigizi < 1 ? 1 : 0,
-                'score_twelve_nutrisigizi' => $request->twelve_nutrisigizi < 1 ? 1 : 0,
+                'score_five_one_nutrisigizi' => $request->five_one_nutrisigizi,
+                'score_five_two_nutrisigizi' => $request->five_two_nutrisigizi,
+                'score_five_three_nutrisigizi' => $request->five_three_nutrisigizi,
+                'score_six_nutrisigizi' => $request->six_nutrisigizi,
+                'score_seven_nutrisigizi' => $request->seven_nutrisigizi,
+                'score_eight_nutrisigizi' => $request->eight_nutrisigizi,
+                'score_nine_nutrisigizi' => $request->nine_nutrisigizi,
+                'score_ten_nutrisigizi' => $request->ten_nutrisigizi,
+                'score_eleven_nutrisigizi' => $request->eleven_nutrisigizi,
+                'score_twelve_nutrisigizi' => $request->twelve_nutrisigizi,
             ]);
         } catch (\Throwable $th) {
             dd($th);
@@ -283,6 +284,7 @@ class PantauanKMSController extends Controller
         $kms->save();
         return redirect()->back();
     }
+
     //cetak pertanggal
     public function laporanKMS()
     {
@@ -319,8 +321,20 @@ class PantauanKMSController extends Controller
     public function laporanDataKMS()
     {
         $nama_lansia = DataLansia::pluck('nama_lansia', 'id');
-        //$nama_lansia=PantauanKMS::with('lansia')->get()->pluck('lansia.nama_lansia','id');
-        return view('pages.admin.lansia.pantauan-kms.laporandataKMS', ['nama_lansia' => $nama_lansia]);
+
+        $totalScoreLawton = DB::table('pantauan_kms')
+                    ->select(DB::raw('SUM(score_one_lawton + score_two_lawton + score_three_lawton + score_four_lawton + score_five_lawton + score_six_lawton + score_seven_lawton + score_eight_lawton) as total_lawton'))
+                    ->first();
+
+        $totalScoreBarthel = DB::table('pantauan_kms')
+                    ->select(DB::raw('SUM(score_one_barthel + score_two_barthel + score_three_barthel + score_four_barthel + score_five_barthel + score_six_barthel + score_seven_barthel + score_eight_barthel + score_nine_barthel + score_ten_barthel) as total_barthel'))
+                    ->first();
+
+        $totalScoreNutrisiGizi = DB::table('pantauan_kms')
+                    ->select(DB::raw('SUM(score_one_nutrisigizi + score_two_nutrisigizi + score_three_nutrisigizi + score_four_nutrisigizi + score_five_one_nutrisigizi + score_five_two_nutrisigizi + score_five_three_nutrisigizi + score_six_nutrisigizi + score_seven_nutrisigizi + score_eight_nutrisigizi + score_nine_nutrisigizi + score_ten_nutrisigizi) as total_nutrisi_gizi'))
+                    ->first();
+
+        return view('pages.admin.lansia.pantauan-kms.laporandataKMS', compact('nama_lansia', 'totalScoreLawton', 'totalScoreBarthel', 'totalScoreNutrisiGizi'));
     }
 
     public function sortirriwayat(Request $request)
@@ -329,20 +343,44 @@ class PantauanKMSController extends Controller
         // dd($data);
         return redirect()->route('admin.data-lansia.laporandatakmslansia')->with(['data' => $data]);
     }
+
     public function cetakKMS($id)
     {
         $lansia = PantauanKMS::where('nama_lansia1', $id)->first();
         // $kms = PantauanKMS::where('no_kms', $id)->first();
         $data = PantauanKMS::where('nama_lansia1', $id)->get();
-        $pdf = PDF::loadview('pages.admin.lansia.pantauan-kms.cetakkms', ['data' => $data, 'lansia' => $lansia])->setPaper('legal', 'landscape');
+
+        $totalScoreLawton = DB::table('pantauan_kms')
+                    ->select(DB::raw('SUM(score_one_lawton + score_two_lawton + score_three_lawton + score_four_lawton + score_five_lawton + score_six_lawton + score_seven_lawton + score_eight_lawton) as total_lawton'))
+                    ->first();
+
+        $totalScoreBarthel = DB::table('pantauan_kms')
+                    ->select(DB::raw('SUM(score_one_barthel + score_two_barthel + score_three_barthel + score_four_barthel + score_five_barthel + score_six_barthel + score_seven_barthel + score_eight_barthel + score_nine_barthel + score_ten_barthel) as total_barthel'))
+                    ->first();
+
+        $totalScoreNutrisiGizi = DB::table('pantauan_kms')
+                    ->select(DB::raw('SUM(score_one_nutrisigizi + score_two_nutrisigizi + score_three_nutrisigizi + score_four_nutrisigizi + score_five_one_nutrisigizi + score_five_two_nutrisigizi + score_five_three_nutrisigizi + score_six_nutrisigizi + score_seven_nutrisigizi + score_eight_nutrisigizi + score_nine_nutrisigizi + score_ten_nutrisigizi) as total_nutrisi_gizi'))
+                    ->first();
+
+        $pdf = PDF::loadview('pages.admin.lansia.pantauan-kms.cetakkms', [
+                        'data' => $data, 
+                        'lansia' => $lansia,
+                        'totalScoreLawton' => $totalScoreLawton,
+                        'totalScoreBarthel' => $totalScoreBarthel,
+                        'totalScoreNutrisiGizi' => $totalScoreNutrisiGizi
+                    ])
+                    ->setPaper('legal', 'landscape');
+
         return $pdf->download('KMS Lansia.pdf');
     }
+
     public function cetakLaporandataKMS($id)
     {
         $lansia = PantauanKMS::where('nama_lansia1', $id)->first();
-        // $kms = PantauanKMS::where('no_kms', $id)->first();
         $data = PantauanKMS::where('nama_lansia1', $id)->get();
+
         $pdf = PDF::loadview('pages.admin.lansia.pantauan-kms.cetakriwayatkms', ['data' => $data, 'lansia' => $lansia])->setPaper('legal', 'landscape');
+
         return $pdf->download('Riwayat KMS Lansia.pdf');
     }
 }
