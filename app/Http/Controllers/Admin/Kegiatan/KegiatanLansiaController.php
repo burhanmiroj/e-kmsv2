@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers\Admin\Kegiatan;
 
-use App\DataTables\Admin\Kegiatan\KegiatanLansiaDataTable;
-use App\Http\Controllers\Controller;
-use App\Models\KegiatanLansia;
-use App\Models\DataLansia;
+use Carbon\Carbon;
 use App\Models\Kader;
-use App\Models\PantauanKMS;
 use App\Models\Pemasukan;
 use App\Models\Pengajuan;
-use App\Models\PesertaKegiatan;
+use App\Models\DataLansia;
+use App\Models\PantauanKMS;
+use Illuminate\Support\Str;
 use App\Models\PesertaKader;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Models\KegiatanLansia;
+use App\Models\PesertaKegiatan;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use App\DataTables\Admin\Kegiatan\KegiatanLansiaDataTable;
 
 
 
@@ -41,7 +43,19 @@ class KegiatanLansiaController extends Controller
         }
 
         try {
-            KegiatanLansia::create($request->all());
+            $thumbnailFileName = Str::random(10) . $request->file('thumbnail')->getClientOriginalName();
+            $request->file('thumbnail')->storeAs('public/kegiatan-lansia/', $thumbnailFileName);
+
+            KegiatanLansia::create([
+                'thumbnail' => $thumbnailFileName,
+                'nama' => $request->nama,
+                'deskripsi' => $request->deskripsi,
+                'lokasi' => $request->lokasi,
+                'tanggal_kegiatan' => $request->tanggal_kegiatan,
+                'waktu_mulai' => $request->waktu_mulai,
+                'waktu_selesai' => $request->waktu_selesai,
+                'status' => 0,
+            ]);
         } catch (\Throwable $th) {
             dd($th);
             return back()->withInput()->withToastError('Something went wrong');
@@ -53,6 +67,7 @@ class KegiatanLansiaController extends Controller
     {
         $data = KegiatanLansia::find($id);
         $datakms = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->get();
+
         return view('pages.admin.lansia.kegiatanlansia.rekapkegiatan', compact('datakms', 'data'));
         // $data = KegiatanLansia::findorFail($id);
         // $data_lansia = DataLansia::get();
@@ -81,22 +96,50 @@ class KegiatanLansiaController extends Controller
 
         try {
             $data = KegiatanLansia::findOrFail($id);
-            $data->update($request->all());
+
+            if ($request->file('thumbnail')) {
+                if (Storage::disk('public')->exists('kegiatan-lansia/' . $data->thumbnail)) {
+                    Storage::disk('public')->delete('kegiatan-lansia/' . $data->thumbnail);
+                }                
+
+                $thumbnailFileName = Str::random(10) . $request->file('thumbnail')->getClientOriginalName();
+                $request->file('thumbnail')->storeAs('public/kegiatan-lansia/', $thumbnailFileName);
+            }
+
+            $data->update([
+                'thumbnail' => $request->file('thumbnail') ? $thumbnailFileName : $data->thumbnail,
+                'nama' => $request->nama,
+                'deskripsi' => $request->deskripsi,
+                'lokasi' => $request->lokasi,
+                'tanggal_kegiatan' => $request->tanggal_kegiatan,
+                'waktu_mulai' => $request->waktu_mulai,
+                'waktu_selesai' => $request->waktu_selesai,
+                'status' => 0,
+            ]);
         } catch (\Throwable $th) {
             return back()->withInput()->withToastError('Something went wrong');
         }
 
         return redirect(route('admin.data-kegiatan.datakegiatanlansia.index'))->withToastSuccess('Data tersimpan');
     }
+
     public function destroy($id)
     {
         try {
             $data = KegiatanLansia::find($id);
+
+            if (Storage::disk('public')->exists('kegiatan-lansia/' . $data->thumbnail)) {
+                Storage::disk('public')->delete('kegiatan-lansia/' . $data->thumbnail);
+            }
+
             $data->delete($data);
         } catch (\Throwable $th) {
             return response(['error' => 'Something went wrong']);
         }
+
+        return redirect(route('admin.data-kegiatan.datakegiatanlansia.index'))->withToastSuccess('Data dihapus');
     }
+    
     public function status($id)
     {
         $now = Carbon::now();

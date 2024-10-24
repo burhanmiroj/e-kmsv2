@@ -15,6 +15,7 @@ class KegiatanLansia extends Model
 
     protected $table = 'kegiatan_lansia';
     protected $fillable = [
+        'thumbnail',
         'nama',
         'deskripsi',
         'lokasi', 

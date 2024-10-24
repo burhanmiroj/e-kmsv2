@@ -62,7 +62,7 @@
                 <center>
                     <h4> Laporan Data KMS Lansia</h4>
                 </center>
-                <a href="/admin/data-lansia/cetaklaporandatakms/{{ session('data')->first()->lansia->id }}"
+                <a href="/admin/data-lansia/cetaklaporandatakms/2"
                     class="btn btn-sm btn-white m-b-10 float-right mr-4"><i
                         class="fa fa-file-pdf t-plus-1 text-danger fa-fw fa-lg"></i> Export
                     as PDF</a>
@@ -142,7 +142,7 @@
                         <div class="form-group">
                             <div class="input-group mb-3">
                                 <label for="label"> Nama Lansia</label>
-                                <x-form.Dropdown name="nama_lansia1" :options="$nama_lansia" />
+                                <x-form.Dropdown name="nama_lansia1" :options="$nama_lansia" required />
                             </div>
                             <button class="btn btn-primary btn-md float-right " type="submit" name="submit"
                                 value="table">Search</button>
@@ -159,7 +159,7 @@
                 <center>
                     <h4> Riwayat KMS Lansia</h4>
                 </center>
-                <a href="/admin/data-lansia/cetaklaporandatakms/{{ session('data')->first()->lansia->id }}"
+                <a href="/admin/data-lansia/cetaklaporandatakms/2"
                     class="btn btn-sm btn-white m-b-10 float-right mr-4"><i
                         class="fa fa-file-pdf t-plus-1 text-danger fa-fw fa-lg"></i> Export
                     as PDF</a>
@@ -206,17 +206,13 @@
                             @endforeach
                         </tbody>
                     </table>
-
                 </div>
-
             </div>
-
-
         </div>
         <div class="panel panel-inverse">
             <div class="panel-body">
                 <h4> KMS Lansia </h4>
-                <a href="/admin/data-lansia/cetakkms/{{ session('data')->first()->lansia->id }}"
+                <a href="/admin/data-lansia/cetakkms/2"
                     class="btn btn-sm btn-white m-b-10 float-right mr-4"><i
                         class="fa fa-file-pdf t-plus-1 text-danger fa-fw fa-lg"></i> Export
                     as PDF</a>

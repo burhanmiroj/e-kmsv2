@@ -53,11 +53,144 @@ class PantauanKMSController extends Controller
         } catch (\Throwable $th) {
             return back()->withInput()->withToastError($th->validator->messages()->all()[0]);
         }
+        
+        function getScoreValue($barthel) {
+            switch ($barthel) {
+                case 2:
+                    return 1;
+                case 3:
+                    return 2;
+                case 4:
+                    return 3;
+                default:
+                    return 0;
+            }
+        }
+        
+        // ONE BARTHEL
+        $one_barthel_value = getScoreValue($request->one_barthel);
+        
+        // TWO BARTHEL
+        $two_barthel_value = getScoreValue($request->two_barthel);
+        
+        // FOUR BARTHEL
+        $four_barthel_value = getScoreValue($request->four_barthel);
+        
+        // FIVE BARTHEL
+        $five_barthel_value = getScoreValue($request->five_barthel);
+
+        // SIX BARTHEL
+        $six_barthel_value = getScoreValue($request->six_barthel);
+
+        // SEVEN BARTHEL
+        $seven_barthel_value = getScoreValue($request->seven_barthel);
+
+        // EIGTH BARTHEL
+        $eight_barthel_value = getScoreValue($request->eight_barthel);
+
+        // NINE BARTHEL
+        $nine_barthel_value = getScoreValue($request->nine_barthel);
+
+        // FOUR NUTRISI GIZI
+        $four_nutrisigizivalue = getScoreValue($request->four_nutrisigizi);
 
         try {
-            PantauanKMS::create($request->all());
+            // ALL PANTAUAN KMS
+            PantauanKMS::create([
+                'tanggal_pemeriksaan' => $request->tanggal_pemeriksaan,
+                'nama_lansia1' => $request->nama_lansia1,
+                'kader' => $request->kader,
+                'kegiatan_harian' => $request->kegiatan_harian,
+                'status_mental' => $request->status_mental,
+                'indeks_massa_tubuh' => $request->indeks_massa_tubuh,
+                'tb' => $request->tb,
+                'bb' => $request->bb,
+                'hasil' => $request->hasil,
+                'tekanan_darah' => $request->tekanan_darah,
+                'sistol' => $request->sistol,
+                'diastol' => $request->diastol,
+                'dengan_obat' => $request->dengan_obat,
+                'nadi' => $request->nadi,
+                'hemoglobin' => $request->hemoglobin,
+                'g_hemoglobin' => $request->g_hemoglobin,
+                'reduksi_urine' => $request->reduksi_urine,
+                'jumlahtanda' => $request->jumlahtanda,
+                'dengan_obat_reduksi' => $request->dengan_obat_reduksi,
+                'protein_urine' => $request->protein_urine,
+                'jumlah_tanda' => $request->jumlah_tanda,
+                'dengan_obat_protein' => $request->dengan_obat_protein,
+                'keluhan' => $request->keluhan,
+                'tindakan' => $request->tindakan,
+                'status' => $request->status,
+                'one_lawton' => $request->one_lawton,
+                'two_lawton' => $request->two_lawton,
+                'three_lawton' => $request->three_lawton,
+                'four_lawton' => $request->four_lawton,
+                'five_lawton' => $request->five_lawton,
+                'six_lawton' => $request->six_lawton,
+                'seven_lawton' => $request->seven_lawton,
+                'eight_lawton' => $request->eight_lawton,
+                'one_barthel' => $request->one_barthel,
+                'two_barthel' => $request->two_barthel,
+                'three_barthel' => $request->three_barthel,
+                'four_barthel' => $request->four_barthel,
+                'five_barthel' => $request->five_barthel,
+                'six_barthel' => $request->six_barthel,
+                'seven_barthel' => $request->seven_barthel,
+                'eight_barthel' => $request->eight_barthel,
+                'nine_barthel' => $request->nine_barthel,
+                'ten_barthel' => $request->ten_barthel,
+                'one_nutrisigizi' => $request->one_nutrisigizi,
+                'two_nutrisigizi' => $request->two_nutrisigizi,
+                'three_nutrisigizi' => $request->three_nutrisigizi,
+                'four_nutrisigizi' => $request->four_nutrisigizi,
+                'five_one_nutrisigizi' => $request->five_one_nutrisigizi,
+                'five_two_nutrisigizi' => $request->five_two_nutrisigizi,
+                'five_three_nutrisigizi' => $request->five_three_nutrisigizi,
+                'six_nutrisigizi' => $request->six_nutrisigizi,
+                'seven_nutrisigizi' => $request->seven_nutrisigizi,
+                'eight_nutrisigizi' => $request->eight_nutrisigizi,
+                'nine_nutrisigizi' => $request->nine_nutrisigizi,
+                'ten_nutrisigizi' => $request->ten_nutrisigizi,
+                // SKOR LAWTON
+                'score_one_lawton' => $request->one_lawton < 4 ? 1 : 0,
+                'score_two_lawton' => $request->two_lawton < 3 ? 1 : 0,
+                'score_three_lawton' => $request->three_lawton < 2 ? 1 : 0,
+                'score_four_lawton' => $request->four_lawton < 2 ? 1 : 0,
+                'score_five_lawton' => $request->five_lawton < 4 ? 1 : 0,
+                'score_six_lawton' => $request->six_lawton < 3 ? 1 : 0,
+                'score_seven_lawton' => $request->seven_lawton < 2 ? 1 : 0,
+                'score_eight_lawton' => $request->eight_lawton < 3 ? 1 : 0,
+                // SKOR BARTHEL
+                'score_one_barthel' => $one_barthel_value,
+                'score_two_barthel' => $two_barthel_value,
+                'score_three_barthel' => $request->three_barthel > 0 ? 1 : 0,
+                'score_four_barthel' => $four_barthel_value,
+                'score_five_barthel' => $five_barthel_value,
+                'score_six_barthel' => $six_barthel_value,
+                'score_seven_barthel' => $seven_barthel_value,
+                'score_eight_barthel' => $eight_barthel_value,
+                'score_nine_barthel' => $nine_barthel_value,
+                'score_ten_barthel' => $request->ten_barthel > 0 ? 1 : 0,
+                // SKOR NUTRISIGIZI
+                'score_one_nutrisigizi' => $request->one_nutrisigizi > 0 ? 1 : 0,
+                'score_two_nutrisigizi' => $request->two_nutrisigizi < 1 ? 1 : 0,
+                'score_three_nutrisigizi' => $request->three_nutrisigizi < 1 ? 1 : 0,
+                'score_four_nutrisigizi' => $four_nutrisigizivalue,
+                'score_five_one_nutrisigizi' => $request->five_one_nutrisigizi < 1 ? 1 : 0,
+                'score_five_two_nutrisigizi' => $request->five_two_nutrisigizi < 1 ? 1 : 0,
+                'score_five_three_nutrisigizi' => $request->five_three_nutrisigizi < 1 ? 1 : 0,
+                'score_six_nutrisigizi' => $request->six_nutrisigizi < 1 ? 1 : 0,
+                'score_seven_nutrisigizi' => $request->seven_nutrisigizi < 1 ? 1 : 0,
+                'score_eight_nutrisigizi' => $request->eight_nutrisigizi < 1 ? 1 : 0,
+                'score_nine_nutrisigizi' => $request->nine_nutrisigizi < 1 ? 1 : 0,
+                'score_ten_nutrisigizi' => $request->ten_nutrisigizi < 1 ? 1 : 0,
+                'score_eleven_nutrisigizi' => $request->eleven_nutrisigizi < 1 ? 1 : 0,
+                'score_twelve_nutrisigizi' => $request->twelve_nutrisigizi < 1 ? 1 : 0,
+            ]);
         } catch (\Throwable $th) {
             dd($th);
+
             return back()->withInput()->withToastError('Something went wrong');
         }
 
@@ -109,7 +242,10 @@ class PantauanKMSController extends Controller
 
         try {
             $data = PantauanKMS::findOrFail($id);
+
             $data->update($request->all());
+
+            
         } catch (\Throwable $th) {
             return back()->withInput()->withToastError('Something went wrong');
         }
@@ -155,7 +291,6 @@ class PantauanKMSController extends Controller
 
     public function sortir(Request $request)
     {
-
         $startDate = Str::before($request->tglawal, ' -');
         $endDate = Str::after($request->tglakhir, '- ');
 

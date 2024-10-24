@@ -29,6 +29,8 @@
 <body data-spy="scroll" data-target="#header-navbar" data-offset="60">
     <!-- begin #page-container -->
     <div id="page-container" class="fade">
+        <!--Start of Tawk.to Script-->
+    
         <!-- begin #header -->
         <div id="header" class="header navbar navbar-transparent navbar-fixed-top">
             <!-- begin container -->

@@ -133,8 +133,6 @@ class PantauanKMSDataTable extends DataTable
             Column::make('tanggal_pemeriksaan', 'pantauan_kms.tanggal_pemeriksaan')->title(' Tanggal Pemeriksaan'),
             Column::make('lansia.nama_lansia', 'lansia.nama_lansia')->title('Nama Lansia'),
             Column::make('lansia.no_kms', 'lansia.no_kms')->title('No KMS'),
-            Column::make('kegiatan_harian', 'pantauan_kms.kegiatan_harian')->title('Kemandirian'),
-            Column::make('status_mental', 'pantauan_kms.status_mental')->title('Emosional Mental'),
             // Column::make('status_mental'),
             Column::make('indeks_massa_tubuh', 'pantauan_kms.indeks_massa_tubuh')->title('Indeks Massa Tubuh'),
             Column::make('tekanan_darah', 'pantauan_kms.tekanan_darah')->title(' Tekanan Darah'),

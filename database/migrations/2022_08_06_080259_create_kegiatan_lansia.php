@@ -15,6 +15,7 @@ class CreateKegiatanLansia extends Migration
     {
         Schema::create('kegiatan_lansia', function (Blueprint $table) {
             $table->id();
+            $table->string('thumbnail');
             $table->string('nama');
             $table->text('deskripsi');
             $table->string('lokasi');

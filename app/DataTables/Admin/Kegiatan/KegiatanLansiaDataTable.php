@@ -25,6 +25,11 @@ class KegiatanLansiaDataTable extends DataTable
             ->setRowId(function ($row) {
                 return $row->id;
             })
+            ->addColumn('thumbnail', function ($row) {
+                $imageThumbnail = '<img src="/storage/kegiatan-lansia/' . $row->thumbnail . '" alt="..." class="img-thumbnail">';
+
+                return $imageThumbnail;
+            })
             ->addColumn('action', function ($row) {
                 $btn = '<div class="btn-group">';
 
@@ -62,7 +67,7 @@ class KegiatanLansiaDataTable extends DataTable
                 $btn = $btn . '</div>';
                 return $btn;
             })
-            ->rawColumns(['rekap_KMS', 'status', 'action']);
+            ->rawColumns(['thumbnail', 'rekap_KMS', 'status', 'action']);
         // ->editColumn('jumlah_iuran', function ($row) {
         //     return ('Rp ' . number_format($row->jumlah_iuran, 2, ',', '.'));
         // });
@@ -105,6 +110,7 @@ class KegiatanLansiaDataTable extends DataTable
         return [
 
             // Column::make('id'),
+            Column::make('thumbnail'),
             Column::make('nama'),
             Column::make('deskripsi'),
             Column::make('lokasi'),

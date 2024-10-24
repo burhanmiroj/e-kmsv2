@@ -19,23 +19,22 @@
 
 
     <!-- begin panel -->
-    <form
-        action="{{ isset($data) ? route('admin.data-kegiatan.datakegiatanlansia.update', $data->id) : route('admin.data-kegiatan.datakegiatanlansia.store') }}"
-        id="form" name="form" method="POST" data-parsley-validate="true">
+    <form action="{{ isset($data) ? route('admin.data-kegiatan.datakegiatanlansia.update', $data->id) : route('admin.data-kegiatan.datakegiatanlansia.store') }}" id="form" name="form" method="POST" data-parsley-validate="true" enctype="multipart/form-data">
         @csrf
         @if (isset($data))
             {{ method_field('PUT') }}
         @endif
-
         <div class="panel panel-inverse">
             <!-- begin panel-heading -->
             <div class="panel-heading">
                 <h4 class="panel-title">Form Kegiatan Lansia</h4>
                 <div class="panel-heading-btn">
-                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i
-                            class="fa fa-expand"></i></a>
-                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i
-                            class="fa fa-minus"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse">
+                        <i class="fa fa-minus"></i>
+                    </a>
                 </div>
             </div>
             <!-- end panel-heading -->
@@ -43,24 +42,41 @@
 
             <div class="panel-body">
                 <div class="form-group">
-                    <label for="name">Nama Kegiatan</label>
-                    <input type="text" id="nama" name="nama" class="form-control" autofocus
-                        data-parsley-required="true" value="{{ $data->nama ?? old('nama') }}">
-                    <label for="name">Deskripsi</label>
-                    <textarea id="deskripsi" name="deskripsi" class="form-control" autofocus data-parsley-required="true"
-                        value="{{ $data->deskripsi ?? old('deskripsi') }}"></textarea>
-                    <label for="name">Lokasi</label>
-                    <input type="text" id="lokasi" name="lokasi" class="form-control" autofocus
-                        data-parsley-required="true" value="{{ $data->lokasi ?? old('lokasi') }}">
-                    <label for="name">Tanggal Kegiatan</label>
-                    <input type="date" id="tanggal_kegiatan" name="tanggal_kegiatan" class="form-control" autofocus
-                        data-parsley-required="true" value="{{ $data->tanggal_kegiatan ?? old('tanggal_kegiatan') }}">
-                    <label for="name">Waktu Mulai</label>
-                    <input type="text" id="waktu_mulai" name="waktu_mulai" class="form-control" autofocus
-                        data-parsley-required="true" value="{{ $data->waktu_mulai ?? old('waktu_mulai') }}">
-                    <label for="name">Waktu Selesai</label>
-                    <input type="text" id="waktu_selesai" name="waktu_selesai" class="form-control" autofocus
-                        data-parsley-required="true" value="{{ $data->waktu_selesai ?? old('waktu_selesai') }}">
+                    {{-- SINGLE FORM INPUT --}}
+                    <div>
+                        <label for="thumbnail">Thumbnail/Foto Kegiatan</label>
+                        <input type="file" id="thumbnail" name="thumbnail" class="form-control" autofocus data-parsley-required="true" />
+                    </div>
+                    {{-- SINGLE FORM INPUT --}}
+                    <div>
+                        <label for="name">Nama Kegiatan</label>
+                        <input type="text" id="nama" name="nama" class="form-control" autofocus data-parsley-required="true" value="{{ $data->nama ?? old('nama') }}">
+                    </div>
+                    {{-- SINGLE FORM INPUT --}}
+                    <div>
+                        <label for="name">Deskripsi</label>
+                        <textarea id="deskripsi" name="deskripsi" class="form-control" autofocus data-parsley-required="true">{{ $data->deskripsi ?? old('deskripsi') }}</textarea>
+                    </div>
+                    {{-- SINGLE FORM INPUT --}}
+                    <div>
+                        <label for="name">Lokasi</label>
+                        <input type="text" id="lokasi" name="lokasi" class="form-control" autofocus data-parsley-required="true" value="{{ $data->lokasi ?? old('lokasi') }}">
+                    </div>
+                    {{-- SINGLE FORM INPUT --}}
+                    <div>
+                        <label for="name">Tanggal Kegiatan</label>
+                        <input type="date" id="tanggal_kegiatan" name="tanggal_kegiatan" class="form-control" autofocus data-parsley-required="true" value="{{ $data->tanggal_kegiatan ?? old('tanggal_kegiatan') }}">
+                    </div>
+                    {{-- SINGLE FORM INPUT --}}
+                    <div>
+                        <label for="name">Waktu Mulai</label>
+                        <input type="text" id="waktu_mulai" name="waktu_mulai" class="form-control" autofocus data-parsley-required="true" value="{{ $data->waktu_mulai ?? old('waktu_mulai') }}">
+                    </div>
+                    {{-- SINGLE FORM INPUT --}}
+                    <div>
+                        <label for="name">Waktu Selesai</label>
+                        <input type="text" id="waktu_selesai" name="waktu_selesai" class="form-control" autofocus data-parsley-required="true" value="{{ $data->waktu_selesai ?? old('waktu_selesai') }}">
+                    </div>
                 </div>
             </div>
             <!-- end panel-body -->
