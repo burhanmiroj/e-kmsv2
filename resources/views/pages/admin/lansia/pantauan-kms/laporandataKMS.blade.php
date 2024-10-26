@@ -153,7 +153,9 @@
             </div>
         </div>
     </div>
-    @if (session('data'))
+    {{-- {{ dd(session('data')) }} --}}
+    @if (session('data') != null)
+        {{-- {{ dd(session('data')) }} --}}
         {{-- {{ dd() }} --}}
         <div class="panel panel-inverse">
             <div class="panel-body">
@@ -237,7 +239,7 @@
                         <tr>
                             <th scope="row">Dikerjakan oleh orang lain (0)</th>
                             @foreach (session('data') as $cetakkms)
-                                <th scope="col" style="background-color: #ffd700;">
+                                <th scope="col" style="background-color: #ff0000;">
                                     @if (intval($totalScoreLawton->total_lawton) == 0)
                                         <span>✓</span>
                                     @endif
@@ -247,7 +249,7 @@
                         <tr>
                             <th scope="row">Perlu bantuan sepanjang waktu (1)</th>
                             @foreach (session('data') as $cetakkms)
-                                <th scope="col" style="background-color: #f8d824;">
+                                <th scope="col" style="background-color: #ff4d4d;">
                                     @if (intval($totalScoreLawton->total_lawton) == 1)
                                     <span>✓</span>
                                 @endif</th>
@@ -256,7 +258,7 @@
                         <tr>
                             <th scope="row">Perlu bantuan sesekali (2)</th>
                             @foreach (session('data') as $cetakkms)
-                                <th scope="col" style="background-color: #f4e171;">
+                                <th scope="col" style="background-color: #f36767;">
                                     @if (intval($totalScoreLawton->total_lawton) == 2)
                                         <span>✓</span>
                                     @endif
@@ -266,7 +268,7 @@
                         <tr>
                             <th scope="row">Independen/mandiri (3-8)</th>
                             @foreach (session('data') as $cetakkms)
-                                <th scope="col" style="background-color: #f6edb9;">
+                                <th scope="col" style="background-color: #ffa8a8;">
                                     @if (intval($totalScoreLawton->total_lawton) > 2)
                                         <span>✓</span>
                                     @endif
@@ -340,7 +342,7 @@
                         <tr>
                             <th scope="row">Normal (>23.5)</th>
                             @foreach (session('data') as $cetakkms)
-                                <th scope="col" style="background-color: #ffd700;">
+                                <th scope="col" style="background-color: #13714a;">
                                     @if (intval($totalScoreNutrisiGizi->total_nutrisi_gizi) > 23.5)
                                         <span>✓</span>
                                     @endif
@@ -350,7 +352,7 @@
                         <tr>
                             <th scope="row">Beresiko malnutrisi (17-23.5)</th>
                             @foreach (session('data') as $cetakkms)
-                                <th scope="col" style="background-color: #f8d824;">
+                                <th scope="col" style="background-color: #28a973;">
                                     @if ((intval($totalScoreNutrisiGizi->total_nutrisi_gizi) > 16) && (intval($totalScoreNutrisiGizi->total_nutrisi_gizi) < 24))
                                         <span>✓</span>
                                     @endif
@@ -360,7 +362,7 @@
                         <tr>
                             <th scope="row">Malnutrisi (<17)</th>
                             @foreach (session('data') as $cetakkms)
-                                <th scope="col" style="background-color: #f4e171;">
+                                <th scope="col" style="background-color: #77f1be;">
                                     @if (intval($totalScoreNutrisiGizi->total_nutrisi_gizi) < 18)
                                         <span>✓</span>
                                     @endif
