@@ -16,7 +16,7 @@
     margin-bottom: 1 rem;">
         <tbody>
             <tr>
-                <th scope="col">Kunjungan Ke</th>
+                <th scope="col" style="width: 400px;">Kunjungan Ke</th>
                 @foreach ($data as $cetakkms)
                     <th scope="col">{{ $loop->iteration }}</th>
                 @endforeach
@@ -38,7 +38,7 @@
                 @foreach ($data as $cetakkms)
                     <th scope="col" style="background-color: #ff0000;">
                         @if (intval($totalScoreLawton->total_lawton) == 0)
-                            <span>✓</span>
+                            <span>v</span>
                         @endif
                     </th>
                 @endforeach
@@ -48,7 +48,7 @@
                 @foreach ($data as $cetakkms)
                     <th scope="col" style="background-color: #ff4d4d;">
                         @if (intval($totalScoreLawton->total_lawton) == 1)
-                        <span>✓</span>
+                        <span>v</span>
                     @endif</th>
                 @endforeach
             </tr>
@@ -57,7 +57,7 @@
                 @foreach ($data as $cetakkms)
                     <th scope="col" style="background-color: #f36767;">
                         @if (intval($totalScoreLawton->total_lawton) == 2)
-                            <span>✓</span>
+                            <span>v</span>
                         @endif
                     </th>
                 @endforeach
@@ -67,7 +67,7 @@
                 @foreach ($data as $cetakkms)
                     <th scope="col" style="background-color: #ffa8a8;">
                         @if (intval($totalScoreLawton->total_lawton) > 2)
-                            <span>✓</span>
+                            <span>v</span>
                         @endif
                     </th>
                 @endforeach
@@ -83,7 +83,7 @@
                 @foreach ($data as $cetakkms)
                     <th scope="col" style="background-color: #ffd700;">
                         @if (intval($totalScoreBarthel->total_barthel) == 20)
-                            <span>✓</span>
+                            <span>v</span>
                         @endif
                     </th>
                 @endforeach
@@ -93,7 +93,7 @@
                 @foreach ($data as $cetakkms)
                     <th scope="col" style="background-color: #f8d824;">
                         @if ((intval($totalScoreBarthel->total_barthel) > 11) && (intval($totalScoreBarthel->total_barthel) < 20))
-                            <span>✓</span>
+                            <span>v</span>
                         @endif
                     </th>
                 @endforeach
@@ -103,7 +103,7 @@
                 @foreach ($data as $cetakkms)
                     <th scope="col" style="background-color: #f4e171;">
                         @if ((intval($totalScoreBarthel->total_barthel) > 8) && (intval($totalScoreBarthel->total_barthel) < 12))
-                            <span>✓</span>
+                            <span>v</span>
                         @endif
                     </th>
                 @endforeach
@@ -113,7 +113,7 @@
                 @foreach ($data as $cetakkms)
                     <th scope="col" style="background-color: #f6edb9;">
                         @if ((intval($totalScoreBarthel->total_barthel) > 4) && (intval($totalScoreBarthel->total_barthel) < 9))
-                            <span>✓</span>
+                            <span>v</span>
                         @endif
                     </th>
                 @endforeach
@@ -123,7 +123,7 @@
                 @foreach ($data as $cetakkms)
                     <th scope="col" style="background-color: #f6edb9;">
                         @if ((intval($totalScoreBarthel->total_barthel) < 1) && (intval($totalScoreBarthel->total_barthel) < 5))
-                            <span>✓</span>
+                            <span>v</span>
                         @endif
                     </th>
                 @endforeach
@@ -139,7 +139,7 @@
                 @foreach ($data as $cetakkms)
                     <th scope="col" style="background-color: #13714a;">
                         @if (intval($totalScoreNutrisiGizi->total_nutrisi_gizi) > 23.5)
-                            <span>✓</span>
+                            <span>v</span>
                         @endif
                     </th>
                 @endforeach
@@ -149,7 +149,7 @@
                 @foreach ($data as $cetakkms)
                     <th scope="col" style="background-color: #28a973;">
                         @if ((intval($totalScoreNutrisiGizi->total_nutrisi_gizi) > 16) && (intval($totalScoreNutrisiGizi->total_nutrisi_gizi) < 24))
-                            <span>✓</span>
+                            <span>v</span>
                         @endif
                     </th>
                 @endforeach
@@ -159,7 +159,7 @@
                 @foreach ($data as $cetakkms)
                     <th scope="col" style="background-color: #77f1be;">
                         @if (intval($totalScoreNutrisiGizi->total_nutrisi_gizi) < 18)
-                            <span>✓</span>
+                            <span>v</span>
                         @endif
                     </th>
                 @endforeach
