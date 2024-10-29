@@ -32,8 +32,8 @@ class DataLansiaDataTable extends DataTable
                 //     $btn = $btn . '<a href="' . route('admin.data-lansia.datakematian.status', $row->id) . '" class="btn btn-secondary buttons-edit">Tidak Aktif</a>';
                 // }
                 $btn = $btn . '<a href="' . route('admin.data-lansia.datalansia.show', $row->id) . '" class="btn btn-warning buttons-detail"><i class="fa fa-eye"></i></a>';
-                // $btn = $btn . '<a href="' . route('admin.data-lansia.datalansia.edit', $row->id) . '" class="btn btn-dark buttons-edit"><i class="fas fa-edit"></i></a>';
-                // $btn = $btn . '<a href="' . route('admin.data-lansia.datalansia.destroy', $row->id) . '" class="btn btn-danger buttons-delete"><i class="fas fa-trash fa-fw"></i></a>';
+                $btn = $btn . '<a href="' . route('admin.data-lansia.datalansia.edit', $row->id) . '" class="btn btn-dark buttons-edit"><i class="fas fa-edit"></i></a>';
+                $btn = $btn . '<a href="' . route('admin.data-lansia.datalansia.destroy', $row->id) . '" class="btn btn-danger buttons-delete"><i class="fas fa-trash fa-fw"></i></a>';
                 // $btn = $btn . '</div>';
 
                 return $btn;

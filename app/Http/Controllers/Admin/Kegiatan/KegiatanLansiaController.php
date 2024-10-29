@@ -72,7 +72,6 @@ class KegiatanLansiaController extends Controller
         // $data = KegiatanLansia::findorFail($id);
         // $data_lansia = DataLansia::get();
         // $data_peserta = PesertaKegiatan::where('kegiatan_lansia_id', $id)->get();
-        // //coba
         // $data_kader = Kader::get();
         // $data_peserta_kader = PesertaKader::where('kegiatan_lansia1', $id)->get();
 

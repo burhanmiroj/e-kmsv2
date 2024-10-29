@@ -39,7 +39,7 @@ class KegiatanLansiaDataTable extends DataTable
                 //     $btn = $btn . '<a href="' . route('admin.data-kegiatan.datakegiatanlansia.status', $row->id) . '" class="btn btn-info buttons-edit">Sudah dilaksanakan</a>';
                 // }
 
-                // $btn = $btn . '<a href="' . route('admin.data-kegiatan.datakegiatanlansia.show', $row->id) . '" class="btn btn-warning buttons-detail btn-xs"><i class="fa fa-eye"></i></a>';
+                $btn = $btn . '<a href="' . route('admin.data-kegiatan.datakegiatanlansia.show', $row->id) . '" class="btn btn-warning buttons-detail btn-xs"><i class="fa fa-eye"></i></a>';
                 $btn = $btn . '<a href="' . route('admin.data-kegiatan.datakegiatanlansia.edit', $row->id) . '" class="btn btn-dark buttons-edit btn-xs"><i class="fas fa-edit"></i></a>';
                 $btn = $btn . '<a href="' . route('admin.data-kegiatan.datakegiatanlansia.destroy', $row->id) . '" class="btn btn-danger buttons-delete btn-xs"><i class="fas fa-trash fa-fw"></i></a>';
                 // $btn = $btn . '<a href="' . route('admin.data-kegiatan.datakegiatanlansia.detail', $row->id) . '" class="btn btn-danger buttons-detail btn-xs"><i class="fas fa-eye fa-fw"></i></a>';
