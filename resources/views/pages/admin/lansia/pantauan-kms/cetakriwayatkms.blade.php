@@ -24,19 +24,19 @@
 
 <body>
     <h1 style="font-size: 16px; text-align: center;">
-        POSYANDU SEBELAS MARET
+        POSYANDU LANSIA
     </h1>
     <h1 style="font-size: 16px; text-align: center;">
-        KELURAHAN JEBRES KECAMATAN JEBRES
+        DESA BUGANGAN KECAMATAN KEDUNGWUNI
     </h1>
     <h1 style="font-size: 16px; text-align: center;">
-        KOTA SURAKARTA
+        KABUPATEN PEKALONGAN
     </h1>
     <h4 style="text-align: center; font-weight: normal; margin-bottom: 0;">
-        JALAN SEBELAS MARET, JEBRES, Kec. JEBRES, Kota SURAKARTA, JAWA TENGAH
+            JL SINGOBONGSO, BUGANGAN GENDING, KEC. KEDUNGWUNI, KAB. PEKALONGAN, JAWA TENGAH
     </h4>
     <h4 style="text-align: center; font-weight: normal; margin: 0;">
-        Telepon: 08988777788 Surel : uns@mail.com Kode Pos : 5612
+            Telepon: 089649793793 Surel : admin.lansia@bugangan.com Kode Pos : 51173
     </h4>
     <hr style="border: 3px solid; margin-bottom: 1px;">
     <hr style="margin-top: 0;">

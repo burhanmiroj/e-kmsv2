@@ -38,9 +38,9 @@
                         $nilaikode = substr($jumlah_data[0], 3);
                         $kode = (int) $nilaikode;
                         $kode = $jumlah_data + 1;
-                        $no_surat = 'RJ2022' . str_pad($kode, 3, '0', STR_PAD_LEFT);
+                        $no_surat = 'RJ2024' . str_pad($kode, 3, '0', STR_PAD_LEFT);
                     } else {
-                        $no_surat = 'RJ2022001';
+                        $no_surat = 'RJ2024001';
                     }
                     ?>
 

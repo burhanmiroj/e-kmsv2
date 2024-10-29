@@ -19,7 +19,7 @@ class StatusKawinChart
         return $this->chart->pieChart()
             ->setTitle('Penduduk Lansia menurut Status Perkawinan')
             // ->setTitle('Penduduk Lansia Berdasarkan Jaminan Kesehatan')
-            ->setSubtitle('Tahun 2022.')
+            ->setSubtitle('Tahun 2024.')
             ->addData([
                 DataLansia::where('status_perkawinan', '1')->count(),
                 DataLansia::where('status_perkawinan', '2')->count(),

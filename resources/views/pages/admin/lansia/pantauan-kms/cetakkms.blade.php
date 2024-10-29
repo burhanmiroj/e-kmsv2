@@ -6,9 +6,9 @@
 
 <p>Nama Lansia : {{ $lansia->lansia->nama_lansia }}</p>
 <p>No KMS : {{ $lansia->lansia->no_kms }}</p>
-<p>Desa/Kelurahan : Kadipuro</p>
+<p>Desa/Kelurahan : Bugangan</p>
 {{-- <p>Puskesmas :</p> --}}
-<p>Kecamatan : Banjarsari</p>
+<p>Kecamatan : Kedungwuni</p>
 {{-- <p>&nbsp;</p> --}}
 <div class="form-group">
     <table class="table table-bordered my-5" align="center" rules="all" border="1px"

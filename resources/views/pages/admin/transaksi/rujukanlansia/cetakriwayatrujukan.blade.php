@@ -8,9 +8,9 @@
     {{-- <p>Nama Kelompok :</p> --}}
     <p>Nama Lansia : {{ $lansia->rujukan->nama_lansia }}</p>
     <p>No KMS : {{ $lansia->rujukan->no_kms }}</p>
-    <p>Desa/Kelurahan : Kadipuro</p>
+    <p>Desa/Kelurahan : Bugangan</p>
     {{-- <p>Puskesmas :</p> --}}
-    <p>Kecamatan : Banjarsari</p>
+    <p>Kecamatan : Kedungwuni</p>
     <br>
     <div class="form-group">
 

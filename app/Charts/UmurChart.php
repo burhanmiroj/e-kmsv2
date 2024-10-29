@@ -18,7 +18,7 @@ class UmurChart
     {
         return $this->chart->pieChart()
             ->setTitle('Penduduk Lansia Berdasarkan Kelompok Umur')
-            ->setSubtitle('Tahun 2022.')
+            ->setSubtitle('Tahun 2024.')
             ->addData([
                 DataLansia::where('umur', '>=', '50')->where('umur', '<=', '59')->count(),
                 DataLansia::where('umur', '>=', '60')->where('umur', '<=', '69')->count(),

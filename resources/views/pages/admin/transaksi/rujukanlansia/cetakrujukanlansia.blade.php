@@ -5,10 +5,10 @@
     <p style="text-align: center;">&nbsp;</p>
     <h4 style="text-align: center;">PENCATATAN RUJUKAN DI KELOMPOK USIA LANJUT</h4>
     <p style="text-align: center;">&nbsp;</p>
-    <p>Nama Kelompok : Posyandu RT 04 RW 03 Banyuagung</p>
-    <p>Desa/Kelurahan : Kadipuro</p>
+    <p>Nama Kelompok : Posyandu Lansia Bugangan</p>
+    <p>Desa/Kelurahan : Bugangan</p>
     {{-- <p>Puskesmas :</p> --}}
-    <p>Kecamatan : Banjarsari</p>
+    <p>Kecamatan : Kedungwuni</p>
     <br>
     <div class="form-group">
 

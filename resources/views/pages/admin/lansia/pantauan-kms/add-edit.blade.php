@@ -344,7 +344,7 @@
                                     </div>
                                     {{-- 2. SINGLE QUESTION --}}
                                     <div class="mt-3 border-t">
-                                        <label class="col-form-label">1. Mengendalikan rangsang BAK</label>
+                                        <label class="col-form-label">2. Mengendalikan rangsang BAK</label>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="two_barthel" id="exampleRadios131" value="1">
                                             <label class="form-check-label" for="exampleRadios131">Tak terkendali atau pakai kateter (skor : 0)</label>
@@ -360,7 +360,7 @@
                                     </div>
                                     {{-- 3. SINGLE QUESTION --}}
                                     <div class="mt-3 border-t">
-                                        <label class="col-form-label">2. Membersihkan diri (mencuci wajah, menyikat rambut, mencukur kumis, sikat gigi)</label>
+                                        <label class="col-form-label">3. Membersihkan diri (mencuci wajah, menyikat rambut, mencukur kumis, sikat gigi)</label>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="three_barthel" id="exampleRadios34" value="1">
                                             <label class="form-check-label" for="exampleRadios34">Butuh pertolongan orang lain (skor : 0)</label>
@@ -372,7 +372,7 @@
                                     </div>
                                     {{-- 4. SINGLE QUESTIOn --}}
                                     <div class="mt-3 border-t">
-                                        <label class="col-form-label">3. Penggunaan WC (keluar masuk WC, melepas/ memakai celana, cebok, menyiram)</label>
+                                        <label class="col-form-label">4. Penggunaan WC (keluar masuk WC, melepas/ memakai celana, cebok, menyiram)</label>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="four_barthel" id="exampleRadios35" value="1">
                                             <label class="form-check-label" for="exampleRadios35">Tergantung pertolongan orang lain (skor : 0)</label>
@@ -388,7 +388,7 @@
                                     </div>
                                     {{-- 5. SINGLE QUESTION --}}
                                     <div class="mt-3 border-t">
-                                        <label class="col-form-label">4. Makan</label>
+                                        <label class="col-form-label">5. Makan</label>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="five_barthel" id="exampleRadios37" value="1">
                                             <label class="form-check-label" for="exampleRadios37">Tidak mampu (skor : 0)</label>
@@ -404,7 +404,7 @@
                                     </div>
                                     {{-- 6. SINGLE QUESTION --}}
                                     <div class="mt-3 border-t">
-                                        <label class="col-form-label">. Berubah posisi dari berbaring ke duduk </label>
+                                        <label class="col-form-label">6. Berubah posisi dari berbaring ke duduk </label>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="six_barthel" id="exampleRadios40" value="1">
                                             <label class="form-check-label" for="exampleRadios40">Tidak mampu (skor : 0)</label>

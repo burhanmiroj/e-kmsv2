@@ -46,7 +46,7 @@
                     <a href="index.html" class="navbar-brand">
                         <img src="{{ asset('template') }}/img/posyandu/logoposyandu.png" />
                         <span class="brand-text">
-                            {{-- <span class="text-theme">Posyandu</span> UNS --}}
+                            {{-- <span class="text-theme">Posyandu</span> UMPP --}}
                         </span>
                     </a>
                 </div>
@@ -880,7 +880,7 @@
                     Color Admin
                 </div>
                 <p>
-                    &copy; Copyright Color Admin 2017 <br />
+                    &copy; Copyright Color Tim IT E-KMS 2024 <br />
                     An admin & front end theme with serious impact. Created by <a href="#">SeanTheme</a>
                 </p>
                 <p class="social-list">

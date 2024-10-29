@@ -18,7 +18,7 @@ class JamkesChart
     {
         return $this->chart->pieChart()
             ->setTitle('Penduduk Lansia Berdasarkan Jaminan Kesehatan')
-            ->setSubtitle('Tahun 2022.')
+            ->setSubtitle('Tahun 2024.')
             ->addData([
                 DataLansia::where('jaminan_kesehatan', '1')->count(),
                 DataLansia::where('jaminan_kesehatan', '2')->count(),
