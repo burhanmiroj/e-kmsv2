@@ -35,39 +35,39 @@
             </tr>
             <tr>
                 <th scope="row">Dikerjakan oleh orang lain (0)</th>
-                @foreach ($data as $cetakkms)
+                @foreach ($pantauan as $cetakkms)
                     <th scope="col" style="background-color: #ff0000;">
                         @if (intval($totalScoreLawton->total_lawton) == 0)
-                            <span>v</span>
+                            <span>✓</span>
                         @endif
                     </th>
                 @endforeach
             </tr>
             <tr>
                 <th scope="row">Perlu bantuan sepanjang waktu (1)</th>
-                @foreach ($data as $cetakkms)
-                    <th scope="col" style="background-color: #ff4d4d;">
+                @foreach ($pantauan as $cetakkms)
+                    <th scope="col" style="background-color: #ffee00;">
                         @if (intval($totalScoreLawton->total_lawton) == 1)
-                        <span>v</span>
+                        <span>✓</span>
                     @endif</th>
                 @endforeach
             </tr>
             <tr>
                 <th scope="row">Perlu bantuan sesekali (2)</th>
-                @foreach ($data as $cetakkms)
-                    <th scope="col" style="background-color: #f36767;">
+                @foreach ($pantauan as $cetakkms)
+                    <th scope="col" style="background-color: #0ccb7c;">
                         @if (intval($totalScoreLawton->total_lawton) == 2)
-                            <span>v</span>
+                            <span>✓</span>
                         @endif
                     </th>
                 @endforeach
             </tr>
             <tr>
                 <th scope="row">Independen/mandiri (3-8)</th>
-                @foreach ($data as $cetakkms)
-                    <th scope="col" style="background-color: #ffa8a8;">
+                @foreach ($pantauan as $cetakkms)
+                    <th scope="col" style="background-color: #008cff;">
                         @if (intval($totalScoreLawton->total_lawton) > 2)
-                            <span>v</span>
+                            <span>✓</span>
                         @endif
                     </th>
                 @endforeach
@@ -80,50 +80,50 @@
             </tr>
             <tr>
                 <th scope="row">Mandiri (20)</th>
-                @foreach ($data as $cetakkms)
-                    <th scope="col" style="background-color: #ffd700;">
+                @foreach ($pantauan as $cetakkms)
+                    <th scope="col" style="background-color: #f6edb9;">
                         @if (intval($totalScoreBarthel->total_barthel) == 20)
-                            <span>v</span>
+                            <span>✓</span>
                         @endif
                     </th>
                 @endforeach
             </tr>
             <tr>
                 <th scope="row">Ketergantungan ringan (12-19)</th>
-                @foreach ($data as $cetakkms)
-                    <th scope="col" style="background-color: #f8d824;">
+                @foreach ($pantauan as $cetakkms)
+                    <th scope="col" style="background-color: #008cff;">
                         @if ((intval($totalScoreBarthel->total_barthel) > 11) && (intval($totalScoreBarthel->total_barthel) < 20))
-                            <span>v</span>
+                            <span>✓</span>
                         @endif
                     </th>
                 @endforeach
             </tr>
             <tr>
                 <th scope="row">Ketergantungan sedang (9-11)</th>
-                @foreach ($data as $cetakkms)
-                    <th scope="col" style="background-color: #f4e171;">
+                @foreach ($pantauan as $cetakkms)
+                    <th scope="col" style="background-color: #0ccb7c;">
                         @if ((intval($totalScoreBarthel->total_barthel) > 8) && (intval($totalScoreBarthel->total_barthel) < 12))
-                            <span>v</span>
+                            <span>✓</span>
                         @endif
                     </th>
                 @endforeach
             </tr>
             <tr>
                 <th scope="row">Ketergantungan berat (5-8)</th>
-                @foreach ($data as $cetakkms)
-                    <th scope="col" style="background-color: #f6edb9;">
+                @foreach ($pantauan as $cetakkms)
+                    <th scope="col" style="background-color: #ffee00;">
                         @if ((intval($totalScoreBarthel->total_barthel) > 4) && (intval($totalScoreBarthel->total_barthel) < 9))
-                            <span>v</span>
+                            <span>✓</span>
                         @endif
                     </th>
                 @endforeach
             </tr>
             <tr>
                 <th scope="row">Ketergantungan total (0-4)</th>
-                @foreach ($data as $cetakkms)
-                    <th scope="col" style="background-color: #f6edb9;">
+                @foreach ($pantauan as $cetakkms)
+                    <th scope="col" style="background-color: #ff0000;">
                         @if ((intval($totalScoreBarthel->total_barthel) < 1) && (intval($totalScoreBarthel->total_barthel) < 5))
-                            <span>v</span>
+                            <span>✓</span>
                         @endif
                     </th>
                 @endforeach
@@ -136,30 +136,30 @@
             </tr>
             <tr>
                 <th scope="row">Normal (>23.5)</th>
-                @foreach ($data as $cetakkms)
-                    <th scope="col" style="background-color: #13714a;">
+                @foreach ($pantauan as $cetakkms)
+                    <th scope="col" style="background-color: #0ccb7c;">
                         @if (intval($totalScoreNutrisiGizi->total_nutrisi_gizi) > 23.5)
-                            <span>v</span>
+                            <span>✓</span>
                         @endif
                     </th>
                 @endforeach
             </tr>
             <tr>
                 <th scope="row">Beresiko malnutrisi (17-23.5)</th>
-                @foreach ($data as $cetakkms)
-                    <th scope="col" style="background-color: #28a973;">
+                @foreach ($pantauan as $cetakkms)
+                    <th scope="col" style="background-color: #ffee00;">
                         @if ((intval($totalScoreNutrisiGizi->total_nutrisi_gizi) > 16) && (intval($totalScoreNutrisiGizi->total_nutrisi_gizi) < 24))
-                            <span>v</span>
+                            <span>✓</span>
                         @endif
                     </th>
                 @endforeach
             </tr>
             <tr>
                 <th scope="row">Malnutrisi (<17)</th>
-                @foreach ($data as $cetakkms)
-                    <th scope="col" style="background-color: #77f1be;">
+                @foreach ($pantauan as $cetakkms)
+                    <th scope="col" style="background-color: #ff0000;">
                         @if (intval($totalScoreNutrisiGizi->total_nutrisi_gizi) < 18)
-                            <span>v</span>
+                            <span>✓</span>
                         @endif
                     </th>
                 @endforeach

@@ -18,8 +18,6 @@
             <th>No. KMS</th>
             <th>Nama</th>
             <th>Tanggal Pemeriksaan</th>
-            <th>Kemandirian</th>
-            <th>Emosional Mental</th>
             <th>IMT</th>
             <th>Tekanan Darah</th>
             <th>Hemoglobin</th>
@@ -36,8 +34,6 @@
                 <td> {{ $kms->lansia->no_kms }}</td>
                 <td> {{ $kms->lansia->nama_lansia }}</td>
                 <td> {{ $kms->tanggal_pemeriksaan }}</td>
-                <td> {{ $kms->kegiatan_harian }}</td>
-                <td> {{ $kms->status_mental }}</td>
                 <td> {{ $kms->indeks_massa_tubuh }}</td>
                 <td> {{ $kms->tekanan_darah }}</td>
                 <td> {{ $kms->hemoglobin }}</td>

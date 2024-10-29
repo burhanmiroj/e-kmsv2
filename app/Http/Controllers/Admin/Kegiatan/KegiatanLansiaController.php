@@ -282,27 +282,60 @@ class KegiatanLansiaController extends Controller
     public function rekapitulasi($id)
     {
         $data = KegiatanLansia::find($id);
-        $datakms = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->count();
+        $datakms = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->where ('', 'one_lawton')->count();
         $lansia = DataLansia::count();
-        $mandiriA = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->where('kegiatan_harian', 'Kategori A')->count();
-        $mandiriB = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->where('kegiatan_harian', 'Kategori B')->count();
-        $mandiriC = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->where('kegiatan_harian', 'Kategori C')->count();
-        $mentalada = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->where('status_mental', 'Ada')->count();
-        $mentaltidakada = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->where('status_mental', 'Tidak Ada')->count();
+        
+        $dikerjakanolehoranglain = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->count();
+        $perlubantuansepanjangwaktu = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->count();
+        $perlubantuansesekali = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->count();
+        $independenmandiri = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->count();
+
+        $mentalada = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->count();
+        $mentaltidakada = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->count();
+
         $imtlebih = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->where('indeks_massa_tubuh', 'Berat Lebih')->count();
         $imtnormal = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->where('indeks_massa_tubuh', 'Normal')->count();
         $imtkurang = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->where('indeks_massa_tubuh', 'Berat Kurang')->count();
+
         $tekanantinggi = PantauanKMS::where('tekanan_darah', 'Tinggi')->count();
         $tekanannormal = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->where('tekanan_darah', 'Normal')->count();
         $tekananrendah = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->where('tekanan_darah', 'Rendah')->count();
+
         $hbkurang = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->where('hemoglobin', 'Kurang')->count();
         $hbnormal = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->where('hemoglobin', 'Normal')->count();
+
         $rpositif = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->where('reduksi_urine', 'Positif')->count();
         $rnormal = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->where('reduksi_urine', 'Normal')->count();
+
         $ppositif = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->where('protein_urine', 'Positif')->count();
         $pnormal = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->where('protein_urine', 'Normal')->count();
+
         $tindakan = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->where('tindakan', 'Dirujuk')->count();
-        $pdf = PDF::loadview('pages.admin.lansia.kegiatanlansia.rekapitulasi', ['data' => $data, 'datakms' => $datakms, 'lansia' => $lansia, 'mandiriA' => $mandiriA, 'mandiriB' => $mandiriB, 'mandiriC' => $mandiriC, 'mentalada' => $mentalada, 'mentaltidakada' => $mentaltidakada, 'imtlebih' => $imtlebih, 'imtnormal' => $imtnormal, 'imtkurang' => $imtkurang, 'tekanantinggi' => $tekanantinggi, 'tekanannormal' => $tekanannormal, 'tekananrendah' => $tekananrendah, 'hbkurang' => $hbkurang, 'hbnormal' => $hbnormal, 'rpositif' => $rpositif, 'rnormal' => $rnormal, 'ppositif' => $ppositif, 'pnormal' => $pnormal, 'tindakan' => $tindakan])->setPaper('Legal');
+        $pdf = PDF::loadview('pages.admin.lansia.kegiatanlansia.rekapitulasi', [
+            'data' => $data, 
+            'datakms' => $datakms, 
+            'lansia' => $lansia, 
+            'mentalada' => $mentalada, 
+            'mentaltidakada' => $mentaltidakada, 
+            'imtlebih' => $imtlebih, 
+            'imtnormal' => $imtnormal, 
+            'imtkurang' => $imtkurang, 
+            'tekanantinggi' => $tekanantinggi, 
+            'tekanannormal' => $tekanannormal, 
+            'tekananrendah' => $tekananrendah, 
+            'hbkurang' => $hbkurang, 
+            'hbnormal' => $hbnormal, 
+            'rpositif' => $rpositif, 
+            'rnormal' => $rnormal, 
+            'ppositif' => $ppositif, 
+            'pnormal' => $pnormal, 
+            'tindakan' => $tindakan,
+            'dikerjakanolehoranglain' => $dikerjakanolehoranglain,
+            'perlubantuansepanjangwaktu' => $perlubantuansepanjangwaktu,
+            'perlubantuansesekali' => $perlubantuansesekali,
+            'independenmandiri' => $independenmandiri
+        ])->setPaper('Legal');
+
         // $pdf = PDF::loadview('pages.admin.lansia.kegiatanlansia.rekapitulasi', ['lansia' => $lansia]);
         return $pdf->download('Rekapitulasi Hasil Kegiatan Posyandu Lansia.pdf');
     }

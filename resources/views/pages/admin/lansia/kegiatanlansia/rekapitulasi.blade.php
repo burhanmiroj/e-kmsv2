@@ -81,7 +81,7 @@
                         Usila/Usia Lanjut yang datang pada bulan ini : {{ $datakms }} Orang</p>
                 </td>
             </tr>
-            <tr>
+            {{-- <tr>
                 <td width=312 valign=top
                     style='width:233.75pt;border:solid windowtext 1.0pt;
   border-top:none;padding:0in 5.4pt 0in 5.4pt'>
@@ -101,8 +101,8 @@
                     <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>Kategori C : {{ $mandiriC }}
                         orang</p>
                 </td>
-            </tr>
-            <tr>
+            </tr> --}}
+            {{-- <tr>
                 <td width=312 valign=top
                     style='width:233.75pt;border:solid windowtext 1.0pt;
   border-top:none;padding:0in 5.4pt 0in 5.4pt'>
@@ -118,12 +118,12 @@
                     <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>Tidak Ada :
                         {{ $mentaltidakada }} orang</p>
                 </td>
-            </tr>
+            </tr> --}}
             <tr>
                 <td width=312 valign=top
                     style='width:233.75pt;border:solid windowtext 1.0pt;
   border-top:none;padding:0in 5.4pt 0in 5.4pt'>
-                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>5. IMT/Berat
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>3. IMT/Berat
                         Badan</p>
                 </td>
                 <td width=312 valign=top
@@ -142,7 +142,7 @@
                 <td width=312 valign=top
                     style='width:233.75pt;border:solid windowtext 1.0pt;
   border-top:none;padding:0in 5.4pt 0in 5.4pt'>
-                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>6. Tekanan
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>4. Tekanan
                         Darah</p>
                 </td>
                 <td width=312 valign=top
@@ -161,7 +161,7 @@
                 <td width=312 valign=top
                     style='width:233.75pt;border:solid windowtext 1.0pt;
   border-top:none;padding:0in 5.4pt 0in 5.4pt'>
-                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>7. Hemoglobin</p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>5. Hemoglobin</p>
                 </td>
                 <td width=312 valign=top
                     style='width:233.75pt;border-top:none;border-left:
@@ -177,7 +177,7 @@
                 <td width=312 valign=top
                     style='width:233.75pt;border:solid windowtext 1.0pt;
   border-top:none;padding:0in 5.4pt 0in 5.4pt'>
-                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>8. Reduksi
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>6. Reduksi
                         Urine</p>
                 </td>
                 <td width=312 valign=top
@@ -194,7 +194,7 @@
                 <td width=312 valign=top
                     style='width:233.75pt;border:solid windowtext 1.0pt;
   border-top:none;padding:0in 5.4pt 0in 5.4pt'>
-                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>9. Protein
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>7. Protein
                         Urine</p>
                 </td>
                 <td width=312 valign=top
@@ -211,7 +211,7 @@
                 <td width=312 valign=top
                     style='width:233.75pt;border:solid windowtext 1.0pt;
   border-top:none;padding:0in 5.4pt 0in 5.4pt'>
-                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>10. Jumlah
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>8. Jumlah
                         yang dirujuk</p>
                 </td>
                 <td width=312 valign=top
