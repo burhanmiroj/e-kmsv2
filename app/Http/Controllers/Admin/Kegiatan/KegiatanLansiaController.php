@@ -282,7 +282,7 @@ class KegiatanLansiaController extends Controller
     public function rekapitulasi($id)
     {
         $data = KegiatanLansia::find($id);
-        $datakms = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->where ('', 'one_lawton')->count();
+        $datakms = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->count();
         $lansia = DataLansia::count();
         
         $dikerjakanolehoranglain = PantauanKMS::where('tanggal_pemeriksaan', $data->tanggal_kegiatan)->count();

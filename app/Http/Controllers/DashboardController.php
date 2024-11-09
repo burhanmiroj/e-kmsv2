@@ -16,7 +16,7 @@ use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
-    public function index(JenisKelaminChart  $jkChart, UmurChart $umurChart, StatusKawinChart $statusChart, JamkesChart $jamkesChart)
+    public function index(JenisKelaminChart $jkChart, UmurChart $umurChart, StatusKawinChart $statusChart, JamkesChart $jamkesChart)
     {
         // dd(auth()->user()->hasRole('regular_user'));
         if (auth()->user()->hasRole('regular_user')) {

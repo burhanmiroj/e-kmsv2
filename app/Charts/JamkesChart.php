@@ -27,8 +27,6 @@ class JamkesChart
                 DataLansia::where('jaminan_kesehatan', '5')->count(),
             ])
             ->setFontFamily('Open Sans')
-            // ->setLabels(['BPJS PBI']);
-
             ->setLabels(['BPJS PBI', 'BPJS Non PBI', 'Jamkesda', 'Asuransi Swasta', 'Perusahaan Kantor']);
     }
 }

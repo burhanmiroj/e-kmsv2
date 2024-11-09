@@ -49,8 +49,9 @@
                     <th>No. KMS</th>
                     <th>Nama</th>
                     <th>Tanggal Pemeriksaan</th>
-                    <th>Kemandirian</th>
-                    <th>Emosional Mental</th>
+                    <th>Lawton</th>
+                    <th>Barthel</th>
+                    <th>Nutrisi Gizi</th>
                     <th>IMT</th>
                     <th>Tekanan Darah</th>
                     <th>Hemoglobin</th>
@@ -66,8 +67,9 @@
                         <td> {{ $cetakkms->lansia->no_kms }}</td>
                         <td> {{ $cetakkms->lansia->nama_lansia }}</td>
                         <td> {{ $cetakkms->tanggal_pemeriksaan }}</td>
-                        <td> {{ $cetakkms->kegiatan_harian }}</td>
-                        <td> {{ $cetakkms->status_mental }}</td>
+                        <td> {{ $skor_lawton->total_lawton }}</td>
+                        <td> {{ $skor_barthel->total_barthel }}</td>
+                        <td> {{ $skor_nutrisi_gizi->total_nutrisi_gizi }}</td>
                         <td> {{ $cetakkms->indeks_massa_tubuh }}</td>
                         <td> {{ $cetakkms->tekanan_darah }}</td>
                         <td> {{ $cetakkms->hemoglobin }}</td>

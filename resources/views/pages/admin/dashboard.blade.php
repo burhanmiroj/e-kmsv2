@@ -229,16 +229,15 @@
 @endsection
 
 @push('scripts')
-    <!-- Gender -->
     <script src="{{ $jkChart->cdn() }}"></script>
     {{ $jkChart->script() }}
-    <!-- Umur -->
+    
     <script src="{{ $umurChart->cdn() }}"></script>
     {{ $umurChart->script() }}
-    <!-- Status -->
+
     <script src="{{ $statusChart->cdn() }}"></script>
     {{ $statusChart->script() }}
-    <!-- Jamkes -->
+    
     <script src="{{ $jamkesChart->cdn() }}"></script>
     {{ $jamkesChart->script() }}
 

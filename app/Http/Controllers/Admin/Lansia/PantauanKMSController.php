@@ -379,7 +379,28 @@ class PantauanKMSController extends Controller
         $lansia = PantauanKMS::where('nama_lansia1', $id)->first();
         $data = PantauanKMS::where('nama_lansia1', $id)->get();
 
-        $pdf = PDF::loadview('pages.admin.lansia.pantauan-kms.cetakriwayatkms', ['data' => $data, 'lansia' => $lansia])->setPaper('legal', 'landscape');
+        $totalScoreLawton = DB::table('pantauan_kms')
+                    ->select(DB::raw('SUM(score_one_lawton + score_two_lawton + score_three_lawton + score_four_lawton + score_five_lawton + score_six_lawton + score_seven_lawton + score_eight_lawton) as total_lawton'))
+                    ->where('nama_lansia1', $id)
+                    ->first();
+
+        $totalScoreBarthel = DB::table('pantauan_kms')
+                    ->select(DB::raw('SUM(score_one_barthel + score_two_barthel + score_three_barthel + score_four_barthel + score_five_barthel + score_six_barthel + score_seven_barthel + score_eight_barthel + score_nine_barthel + score_ten_barthel) as total_barthel'))
+                    ->where('nama_lansia1', $id)
+                    ->first();
+
+        $totalScoreNutrisiGizi = DB::table('pantauan_kms')
+                    ->select(DB::raw('SUM(score_one_nutrisigizi + score_two_nutrisigizi + score_three_nutrisigizi + score_four_nutrisigizi + score_five_one_nutrisigizi + score_five_two_nutrisigizi + score_five_three_nutrisigizi + score_six_nutrisigizi + score_seven_nutrisigizi + score_eight_nutrisigizi + score_nine_nutrisigizi + score_ten_nutrisigizi) as total_nutrisi_gizi'))
+                    ->where('nama_lansia1', $id)
+                    ->first();
+
+        $pdf = PDF::loadview('pages.admin.lansia.pantauan-kms.cetakriwayatkms', [
+            'data' => $data, 
+            'lansia' => $lansia, 
+            'skor_lawton' => $totalScoreLawton,
+            'skor_barthel' => $totalScoreBarthel,
+            'skor_nutrisi_gizi' => $totalScoreNutrisiGizi
+        ])->setPaper('legal', 'landscape');
 
         return $pdf->download('Riwayat KMS Lansia.pdf');
     }

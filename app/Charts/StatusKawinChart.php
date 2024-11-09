@@ -18,14 +18,12 @@ class StatusKawinChart
     {
         return $this->chart->pieChart()
             ->setTitle('Penduduk Lansia menurut Status Perkawinan')
-            // ->setTitle('Penduduk Lansia Berdasarkan Jaminan Kesehatan')
             ->setSubtitle('Tahun 2024.')
             ->addData([
                 DataLansia::where('status_perkawinan', '1')->count(),
                 DataLansia::where('status_perkawinan', '2')->count(),
                 DataLansia::where('status_perkawinan', '3')->count(),
                 DataLansia::where('status_perkawinan', '4')->count(),
-
             ])
             ->setFontFamily('Open Sans')
             ->setLabels(['Kawin', 'Belum Kawin', 'Cerai Mati', 'Cerai Hidup']);
